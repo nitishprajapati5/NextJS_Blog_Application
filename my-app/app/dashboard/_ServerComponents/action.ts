@@ -2,7 +2,9 @@
 import { getSession } from "@/app/lib/getSession";
 import { connectDB } from "@/app/lib/mongoose";
 import { Blog } from "@/app/models/Blog";
+import { User } from "@/app/models/User";
 import { redirect } from "next/navigation";
+
 
 export async function getAllBlogs(){
    try {
@@ -11,9 +13,13 @@ export async function getAllBlogs(){
         redirect("/login")
     }
 
-    const getAllBlogs = await Blog.find().populate("author","name")
-    return getAllBlogs
+    await connectDB();
+
+    const getAllBlogsFromDataBase = await Blog.find().populate("author","name")
+    console.log(getAllBlogsFromDataBase)
+    return getAllBlogsFromDataBase;
    } catch (error) {
+      console.log(error)
       return {error:"Something went Wrong!"}
    }
 
@@ -62,5 +68,8 @@ export async function EditBlog(prevState:any,formData:FormData){
     if(!user){
         redirect("/login")
     }
+
+    await connectDB();
+
 
 }

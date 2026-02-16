@@ -1,7 +1,8 @@
 import { getAllBlogs } from "./_ServerComponents/action"
 
-export default function Dashboard() {
-  const getAllBlogsData = getAllBlogs()
+export default async function Dashboard() {
+  const getAllBlogsData =await getAllBlogs()
+  console.log(getAllBlogsData)
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
       {/* Header / Action */}
