@@ -1,5 +1,4 @@
 import mongoose, { Schema, models } from "mongoose"
-import { User } from "./User"
 
 const BlogSchema = new Schema(
   {
@@ -7,7 +6,7 @@ const BlogSchema = new Schema(
     content: { type: String, required: true },
     author: { 
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     tags: [{ type: String }],

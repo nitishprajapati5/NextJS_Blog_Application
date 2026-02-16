@@ -1,35 +1,47 @@
 "use server"
 import { getSession } from "@/app/lib/getSession";
-import { connectDB } from "@/app/lib/mongoose";
 import { Blog } from "@/app/models/Blog";
 import { User } from "@/app/models/User";
+import { connectDB } from "@/app/lib/mongoose";
 import { redirect } from "next/navigation";
 
 
-export async function getAllBlogs(){
+export async function getAllBlogs() {
+   try {
+     const user = await getSession();
+     if (!user) redirect("/login");
+
+     await connectDB();
+
+     const blogs = await Blog.find()
+       .populate("author", "name")
+       .lean();
+
+     return JSON.parse(JSON.stringify(blogs)); 
+   } catch (error) {
+      console.log(error);
+      return { error: "Something went Wrong!" };
+   }
+}
+
+export async function getBlogById(id:string){
    try {
      const user = await getSession()
     if(!user){
         redirect("/login")
     }
 
-    await connectDB();
+    const blog = await Blog.findById({id})
+       .populate("author", "name")
+       .lean();
 
-    const getAllBlogsFromDataBase = await Blog.find().populate("author","name")
-    console.log(getAllBlogsFromDataBase)
-    return getAllBlogsFromDataBase;
+    console.log(blog)
+    return blog
    } catch (error) {
-      console.log(error)
-      return {error:"Something went Wrong!"}
+        return {error:"Something went wrong!"}
    }
 
-}
 
-export async function getBlogsById(prevState:any,formData:FormData){
-    const user = await getSession()
-    if(!user){
-        redirect("/login")
-    }
 }
 
 export async function CreateBlog(prevState:any,formData:FormData){
