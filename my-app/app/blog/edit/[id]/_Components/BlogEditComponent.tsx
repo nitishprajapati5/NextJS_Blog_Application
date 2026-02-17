@@ -4,6 +4,7 @@ import { EditBlog } from "@/app/dashboard/_ServerComponents/action";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { IBlogs } from "@/app/dashboard/page";
+import { useThemeStore } from "@/app/store/themeStore";
 
 interface BlogEditComponentProps {
   data: IBlogs;
@@ -12,6 +13,8 @@ interface BlogEditComponentProps {
 export default function BlogEditComponent({ data }: BlogEditComponentProps) {
   const router = useRouter();
   const [state, formAction, pending] = useActionState(EditBlog, null);
+
+  const theme = useThemeStore((state) => state.theme);
 
   const handleSubmit = () => {
     router.push("/dashboard");
@@ -23,6 +26,7 @@ export default function BlogEditComponent({ data }: BlogEditComponentProps) {
         action={formAction}
         className="w-full max-w-2xl bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg space-y-6 transition-colors duration-300"
       >
+        {/* Back Button */}
         <div>
           <a href="/dashboard">
             <button
