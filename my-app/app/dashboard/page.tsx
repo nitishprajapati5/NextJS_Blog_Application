@@ -50,12 +50,14 @@ export default async function Dashboard() {
             <div className="truncate">{d.content}</div>
             {d.tags.map((s,index) => <span key={index}>{'#'}{s}{" "}</span>)}
 
-            {user?.id === d.author._id && (<div>
-              <a><button className="bg-black text-white px-4 py-2 rounded-lg shadow hover:bg-gray-800 transition">Edit</button></a>
+            <div className="flex flex-row">
+              {user?.id === d.author._id && (<div>
+              <a href={`/blog/edit/${d._id}`}><button className="bg-black text-white px-4 py-2 rounded-lg shadow hover:bg-gray-800 transition">Edit</button></a>
             </div> )}
-            <div>
+            <div className="px-2">
               <a className="cursor-pointer" href={`/blog/${d._id}`}><button  className="bg-black text-white px-4 py-2 rounded-lg shadow hover:bg-gray-800 transition">View</button></a>
-              </div>
+            </div>
+            </div>
           </div>
          ))}
         </div>
