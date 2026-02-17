@@ -28,6 +28,7 @@ export default function CreateBlogPage() {
             type="text"
             placeholder="Enter your title"
             name="title"
+            required
             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
@@ -38,6 +39,7 @@ export default function CreateBlogPage() {
             placeholder="Enter content here"
             rows={6}
             name="content"
+            required
             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black resize-none"
           ></textarea>
         </div>
@@ -54,9 +56,10 @@ export default function CreateBlogPage() {
 
         <button
           type="submit"
+          disabled={pending}
           className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
         >
-          Create Blog
+          {pending ? "Creating Your Blog...." : "Create Blog"} 
         </button>
       </form>
     </div>
