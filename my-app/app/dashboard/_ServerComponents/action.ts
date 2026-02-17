@@ -1,5 +1,6 @@
 "use server"
 import { getSession } from "@/app/lib/getSession";
+import "../../models"
 import { Blog } from "@/app/models/Blog";
 import { User } from "@/app/models/User";
 import { connectDB } from "@/app/lib/mongoose";

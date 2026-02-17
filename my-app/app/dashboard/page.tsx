@@ -20,7 +20,9 @@ export default async function Dashboard() {
   const getAllBlogsData:IBlogsData = await getAllBlogs()
   const user = await getSession()
 
-  console.log(user)
+  console.log(getAllBlogsData)
+
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
