@@ -16,7 +16,6 @@ export default function DashboardComponent({
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center p-6 transition-colors duration-300">
       
-      {/* Top Bar */}
       <div className="w-full max-w-4xl flex justify-end gap-3 mb-6">
         <a href="/blog/create">
           <button
@@ -30,7 +29,6 @@ export default function DashboardComponent({
         <ThemeToggle />
       </div>
 
-      {/* Card Container */}
       <div className="w-full max-w-4xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-4 transition-colors duration-300">
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-gray-600 dark:text-gray-300">

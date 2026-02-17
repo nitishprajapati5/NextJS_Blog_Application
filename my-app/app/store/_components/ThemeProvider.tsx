@@ -9,10 +9,12 @@ export default function ThemeProvider({children}:{children:React.ReactNode}){
     useEffect(() => {
         const root = document.documentElement;
 
+        console.log("theme",theme)
+
         if(theme === "dark"){
             root.classList.add("dark");
         }else{
-            root.classList.remove("dark");
+            root.classList.add("dark");
         }
     },[theme])
 
